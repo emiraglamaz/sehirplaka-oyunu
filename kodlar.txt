@@ -1,0 +1,316 @@
+package odev4;
+import java.io.*;
+import java.util.Random;
+import java.util.Scanner;
+public class odev4 {
+    public static void main(String[] args)
+            throws IOException {
+        String sehir[] = new String[81];
+        String rastgele[] = new String[81];
+        try {
+            File dosya = new File("dosya.txt");
+            FileReader fr = new FileReader(dosya);
+            BufferedReader br = new BufferedReader(fr);
+            File dosya2 = new File("dosya2.txt");
+            FileReader fw = new FileReader(dosya2);
+            BufferedReader bw = new BufferedReader(fw);
+            File f = new File("sonuclar.txt");
+            FileWriter Fw = new FileWriter(f);
+            BufferedWriter Bw = new BufferedWriter(Fw);
+            for (int i = 0; i < sehir.length; i++) {
+                sehir[i] = br.readLine();
+                rastgele[i] = bw.readLine();
+            }
+            br.close();
+            int dogru = 0, tur = 0;
+            for (; ; ) {
+                Scanner scan = new Scanner(System.in);
+                int sayi;
+                System.out.println("           plaka sehir oyununa hos geldiniz DOGRU = " + dogru + "  TUR = " + tur + "\n           -----------------------------------------------------");
+                System.out.println("          oyundan cikmak icin (0) basin");
+                Random r = new Random();
+                Random r2 = new Random();
+                String dizi[] = new String[2];
+                String temp = sehir[r.nextInt(81)];
+                String tmp = rastgele[r2.nextInt(4)];
+                dizi[0] = temp;
+                dizi[1] = tmp;
+                String aa = dizi[r.nextInt(2)];
+                if (aa.equalsIgnoreCase(temp)) {
+                    System.out.print("         1)" + temp);
+                    System.out.print("         2)" + tmp);
+
+                } else {
+                    System.out.print("         1)" + tmp);
+                    System.out.print("         2)" + temp);
+
+                }
+                System.out.print("\n         sizce hangisi dogru!!!");
+                sayi = scan.nextInt();
+                if (sayi == 0) {
+                    System.out.println("sehir plaka oyunu istatisitkleri");
+                    System.out.println("toplam tur sayisi : "+tur);
+                    System.out.println("toplam dogru sayisi : "+dogru);
+                    System.out.println("Gule Gule!!!!!");
+                    break;
+                }
+                switch (sayi) {
+                    case 1:
+                        if (aa.equals(temp)) {
+                            System.out.println(" tebrikler dogru bildiniz");
+                            dogru++;
+                            tur++;
+                            break;
+                        } else System.out.println("malesef bilemediniz"); tur++;
+                        break;
+                    case 2:
+                        if (aa.equals(temp)) {
+                            System.out.println("malesef bilemediniz");
+                            tur++;
+                            break;
+
+                        } else System.out.println("tebrikler dogru bildiniz");
+                        dogru++; tur++;
+                        break;
+                        default:
+                            System.out.println("lutfen 1 , 2 , 0 , enter tuslarından birini seciniz");
+                            break;
+                }
+
+                Bw.write("Tur sayisi = "+tur);
+                Bw.write("   dogru sayisi = "+dogru);
+                Bw.newLine();
+                Bw.flush();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+
+    }
+}
+
+// örnek bir ekran cıktısı aşağıdadır
+   plaka sehir oyununa hos geldiniz DOGRU = 0  TUR = 0
+           -----------------------------------------------------
+          oyundan cikmak icin (0) basin
+         1)Zonguldak=67         2)Adiyaman=80
+         sizce hangisi dogru!!!
+2
+malesef bilemediniz
+           plaka sehir oyununa hos geldiniz DOGRU = 0  TUR = 1
+           -----------------------------------------------------
+          oyundan cikmak icin (0) basin
+         1)Sanliurfa=63         2)Afyon=79
+         sizce hangisi dogru!!!1
+dogru bildiniz tebrikler
+           plaka sehir oyununa hos geldiniz DOGRU = 1  TUR = 2
+           -----------------------------------------------------
+          oyundan cikmak icin (0) basin
+         1)Adana=81         2)Antalya=07
+         sizce hangisi dogru!!!
+1
+malesef bilemediniz
+           plaka sehir oyununa hos geldiniz DOGRU = 1  TUR = 3
+           -----------------------------------------------------
+          oyundan cikmak icin (0) basin
+         1)Tekirdag=59         2)Adana=81
+         sizce hangisi dogru!!!
+1
+dogru bildiniz tebrikler
+           plaka sehir oyununa hos geldiniz DOGRU = 2  TUR = 4
+           -----------------------------------------------------
+          oyundan cikmak icin (0) basin
+         1)Karaman=70         2)Adana=81
+         sizce hangisi dogru!!!6
+lutfen 1 , 2 , 0 , enter tuslarından birini seciniz
+           plaka sehir oyununa hos geldiniz DOGRU = 2  TUR = 4
+           -----------------------------------------------------
+          oyundan cikmak icin (0) basin
+         1)Agri=78         2)Ankara=06
+         sizce hangisi dogru!!!
+0
+sehir plaka oyunu istatisitkleri
+toplam tur sayisi : 4
+toplam dogru sayisi : 2
+Gule Gule!!!!!
+//***sehir ve plakaların dıgru bulundugu dosya 
+Adana=01
+Adiyaman=02
+Afyon=03
+Agri=04
+Amasya=05
+Ankara=06
+Antalya=07
+Artvin=08
+Aydin=09
+Balikesir=10
+Bilecik=11
+Bingol=12
+Bitlis=13
+Bolu=14
+Burdur=15
+Bursa=16
+Canakkale=17
+Cankiri=18
+Corum=19
+Denizli=20
+Diyarbakir=21
+Edirne=22
+Elazig=23
+Erzincan=24
+Erzurum=25
+Eskisehir=26
+Gaziantep=27
+Giresun=28
+Gumushane=29
+Hakkari=30
+Hatay=31
+Isparta=32
+Mersin=33
+Istanbul=34
+Izmir=35
+Kars=36
+Kastamonu=37
+Kayseri=38
+kirklareli=39
+Kirsehir=40
+Kocaeli=41
+Konya=42
+Kutahya=43
+Malatya=44
+Manisa=45
+Kahraman maras=46
+Mardin=47
+Mugla=48
+Mus=49
+Nevsehir=50
+Nigde=51
+Ordu=52
+Rize=53
+Sakarya=54
+Samsun=55
+Siirt=56
+Sinop=57
+Sivas=58
+Tekirdag=59
+Tokat=60
+Trabzon=61
+Tunceli=62
+Sanliurfa=63
+Usak=64
+Van=65
+Yozgat=66
+Zonguldak=67
+Aksaray=68
+Bayburt=69
+Karaman=70
+Kirikkale=71
+Batman=72
+Sirnak=73
+Bartin=74
+Ardahan=75
+Igdir=76
+Yalova=77
+Karabuk=78
+Kilis=79
+Osmaniye=80
+Duzce=81
+
+
+//sehir ve plakaların rastgele bulundugu dosya
+Adana=81
+Adiyaman=80
+Afyon=79
+Agri=78
+Amasya=77
+Ankara=76
+Antalya=75
+Artvin=74
+Aydin=73
+Balikesir=72
+Bilecik=71
+Bingol=70
+Bitlis=69
+Bolu=68
+Burdur=67
+Bursa=66
+Canakkale=65
+Cankiri=64
+Corum=63
+Denizli=62
+Diyarbakir=61
+Edirne=60
+Elazig=59
+Erzincan=58
+Erzurum=57
+Eskisehir=56
+Gaziantep=55
+Giresun=54
+Gumushane=53
+Hakkari=52
+Hatay=51
+Isparta=50
+Mersin=49
+istanbul=48
+izmir=47
+Kars=46
+Kastamonu=45
+Kayseri=44
+Kirklareli=43
+Kirsehir=42
+Kocaeli=28
+Konya=40
+Kutahya=39
+Malatya=38
+Manisa=37
+Kahraman maraş=36
+Mardin=35
+Mugla=34
+Mus=33
+Nevsehir=32
+Nigde=31
+Ordu=30
+Rize=29
+Sakarya=28
+Samsun=27
+Siirt=26
+Sinop=25
+Sivas=24
+Tekirdag=23
+Tokat=22
+Trabzon=21
+Tunceli=20
+Sanlıurfa=19
+Usak=18
+Van=17
+Yozgat=16
+Zonguldak=15
+Aksaray=14
+Bayburt=13
+Karaman=12
+Kirikkale=11
+Batman=10
+Sirnak=09
+Bartin=08
+Ardahan=07
+Igdir=06
+Yalova=05
+Karabuk=04
+Kilis=03
+Osmaniye=02
+Duzce=01
+
+//sonucların tutuldugu dosya
+Tur sayisi = 1   dogru sayisi = 0
+Tur sayisi = 2   dogru sayisi = 1
+Tur sayisi = 3   dogru sayisi = 1
+Tur sayisi = 4   dogru sayisi = 2
+Tur sayisi = 4   dogru sayisi = 2
+
+
+
+
+
+
+
