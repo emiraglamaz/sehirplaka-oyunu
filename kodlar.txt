@@ -70,6 +70,7 @@ public class odev4 {
                             break;
 
                         } else System.out.println("tebrikler dogru bildiniz");
+
                         dogru++; tur++;
                         break;
                         default:
